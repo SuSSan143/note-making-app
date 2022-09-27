@@ -32,7 +32,7 @@ const AddNewNoteModal = ({ isOpen, onClose }: ModalProps) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post("/api/add-note", {
+      const { data } = await axios.post("https://note-making-app-backend.vercel.app/add-note", {
         data: userInput,
         notesId: noteContext?.notesId,
       });

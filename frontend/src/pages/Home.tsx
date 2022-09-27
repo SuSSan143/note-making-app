@@ -28,7 +28,7 @@ const Home = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data } = await axios.get("/api/check-user");
+        const { data } = await axios.get("https://note-making-app-backend.vercel.app/check-user");
 
         if (data) {
           userContext?.setUserDetails(data);
@@ -40,7 +40,7 @@ const Home = () => {
     };
 
     const fetchData = async (notesId: string) => {
-      const { data } = await axios.get(`/api/get-notes/${notesId}`);
+      const { data } = await axios.get(`https://note-making-app-backend.vercel.app/get-notes/${notesId}`);
       noteContext?.setNotes(data.notes);
     };
 
@@ -50,7 +50,7 @@ const Home = () => {
   }, []);
 
   const handleLogout = async () => {
-    await axios.delete("/api/logout");
+    await axios.delete("https://note-making-app-backend.vercel.app/logout");
     navigate("/");
   };
 

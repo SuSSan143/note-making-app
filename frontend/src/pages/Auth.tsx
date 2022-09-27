@@ -54,7 +54,7 @@ const Auth = () => {
 
     setIsLoading(true);
     try {
-      const { data: signInData } = await axios.post("/api/signin", {
+      const { data: signInData } = await axios.post("https://note-making-app-backend.vercel.app/signin", {
         username: userInput.username,
         password: userInput.password,
       });
@@ -81,7 +81,7 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data: signUpData } = await axios.post("/api/signup", {
+      const { data: signUpData } = await axios.post("https://note-making-app-backend.vercel.app/signup", {
         username: userInput.username,
         password: userInput.password,
       });

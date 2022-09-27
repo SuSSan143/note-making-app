@@ -46,7 +46,7 @@ const Card = ({
         setIsLoading(true);
         try {
           const { data } = await axios.get(
-            `/api/get-note/${noteContext?.notesId}/${noteId}`
+            `https://note-making-app-backend.vercel.app/get-note/${noteContext?.notesId}/${noteId}`
           );
 
           const { title, description } = data;
@@ -76,7 +76,7 @@ const Card = ({
     try {
       e.preventDefault();
       const { data } = await axios.delete(
-        `/api/delete-note/${noteContext?.notesId}/${noteId}`
+        `https://note-making-app-backend.vercel.app/delete-note/${noteContext?.notesId}/${noteId}`
       );
       noteContext?.setNotes(data.notes);
     } catch (error) {
@@ -111,7 +111,7 @@ const Card = ({
 
     setIsLoading(true);
     try {
-      const { data } = await axios.post("/api/edit-note", {
+      const { data } = await axios.post("https://note-making-app-backend.vercel.app/edit-note", {
         title: userInput.title,
         description: userInput.description,
         notesId: noteContext?.notesId,
