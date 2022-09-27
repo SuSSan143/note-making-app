@@ -46,7 +46,8 @@ const Card = ({
         setIsLoading(true);
         try {
           const { data } = await axios.get(
-            `https://note-making-app-backend.vercel.app/get-note/${noteContext?.notesId}/${noteId}`
+            `https://note-making-app-backend.vercel.app/get-note/${noteContext?.notesId}/${noteId}`,
+            { withCredentials: true }
           );
 
           const { title, description } = data;
@@ -76,7 +77,8 @@ const Card = ({
     try {
       e.preventDefault();
       const { data } = await axios.delete(
-        `https://note-making-app-backend.vercel.app/delete-note/${noteContext?.notesId}/${noteId}`
+        `https://note-making-app-backend.vercel.app/delete-note/${noteContext?.notesId}/${noteId}`,
+        { withCredentials: true }
       );
       noteContext?.setNotes(data.notes);
     } catch (error) {
@@ -111,12 +113,16 @@ const Card = ({
 
     setIsLoading(true);
     try {
-      const { data } = await axios.post("https://note-making-app-backend.vercel.app/edit-note", {
-        title: userInput.title,
-        description: userInput.description,
-        notesId: noteContext?.notesId,
-        noteId: noteId,
-      });
+      const { data } = await axios.post(
+        "https://note-making-app-backend.vercel.app/edit-note",
+        {
+          title: userInput.title,
+          description: userInput.description,
+          notesId: noteContext?.notesId,
+          noteId: noteId,
+        },
+        { withCredentials: true }
+      );
 
       noteContext?.setNotes(data.notes);
       navigate(`/${userContext?.userDetails.username}`);

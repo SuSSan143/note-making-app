@@ -54,10 +54,14 @@ const Auth = () => {
 
     setIsLoading(true);
     try {
-      const { data: signInData } = await axios.post("https://note-making-app-backend.vercel.app/signin", {
-        username: userInput.username,
-        password: userInput.password,
-      });
+      const { data: signInData } = await axios.post(
+        "https://note-making-app-backend.vercel.app/signin",
+        {
+          username: userInput.username,
+          password: userInput.password,
+        },
+        { withCredentials: true }
+      );
 
       userContext?.setUserDetails(signInData);
       return navigate(`/${signInData.username}`);
@@ -81,10 +85,14 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data: signUpData } = await axios.post("https://note-making-app-backend.vercel.app/signup", {
-        username: userInput.username,
-        password: userInput.password,
-      });
+      const { data: signUpData } = await axios.post(
+        "https://note-making-app-backend.vercel.app/signup",
+        {
+          username: userInput.username,
+          password: userInput.password,
+        },
+        { withCredentials: true }
+      );
       toast({
         title: "Account created.",
         description: "You can login now",

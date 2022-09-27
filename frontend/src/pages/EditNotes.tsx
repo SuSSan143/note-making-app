@@ -20,7 +20,10 @@ const EditNotes = () => {
     const fetchUser = async () => {
       setIsLoading(true);
       try {
-        const { data } = await axios.get("https://note-making-app-backend.vercel.app/check-user");
+        const { data } = await axios.get(
+          "https://note-making-app-backend.vercel.app/check-user",
+          { withCredentials: true }
+        );
 
         if (data) {
           userContext?.setUserDetails(data);
@@ -32,7 +35,10 @@ const EditNotes = () => {
     };
 
     const fetchData = async (notesId: string) => {
-      const { data } = await axios.get(`https://note-making-app-backend.vercel.app/get-note/${notesId}/${noteId}`);
+      const { data } = await axios.get(
+        `https://note-making-app-backend.vercel.app/get-note/${notesId}/${noteId}`,
+        { withCredentials: true }
+      );
       setNoteData({
         title: data.title,
         description: data.description,

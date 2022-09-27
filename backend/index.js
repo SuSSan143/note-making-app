@@ -9,12 +9,23 @@ const mongoose = require("mongoose");
 const { authRoutes } = require("./routes/auth");
 const { notesRoute } = require("./routes/notes");
 
+const whitelist = [
+  "http://127.0.0.1:5173",
+  "https://note-making-app-frontend-v6pj.vercel.app",
+];
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5173", "https://note-making-app-frontend-v6pj.vercel.app"],
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
